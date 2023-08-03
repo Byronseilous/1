@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col m8 blue lighten-4">
+    <h3>Create a New post:</h3>
+
+    <form class="form new-post-form" id="new-post-form">
+      <div class="input-field">
+        <label for="post-content">What would you like to share?</label>
+        <textarea class="form-input" id="post-content" name="post-content"></textarea>
+      </div>
+      <div class="input-field">
+        <label for="image-link">Want to share an image link?</label>
+        <textarea class="form-input" id="image-link" name="image-link"></textarea>
+      </div>
+      <div class="input-field">
+        <button type="button" id="submit-button" class="btn-large light-blue darken-4 space right">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  {{#if posts.length}}
+  <div class="col m6">
+    <h3>Current Posts:</h3>
+    {{#each posts as |post|}}
+    <div class="card blue lighten-4 card-panel edit-post-form">
+      {{#if post.hasImage}}
+      <div class="card-image">
+        <img src={{post.imageLink}} alt="">
+      </div>
+      {{/if}}
+      <div class="card-content">
+        <form class="space" post-id="{{post.id}}">
+          <div class="input-field">
+            <label for="post-content">Content</label>
+            <textarea class="input-field post-content" required>{{post.text}}</textarea>
+          </div>
+
+          <button class="btn light-blue darken-4 updatePost">Update Post</button>
+          <button class="btn light-blue darken-4 deletePost">Delete</button>
+        </form>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+<script src="./js/profile.js"></script>
